@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #071634;
+  --color-ink-soft: #16264b;
+  --color-body: #5a6480;
+  --color-body-light: #7581a3;
+  --color-accent: #0b3bcb;
+  --color-accent-soft: #ebeefd;
+  --color-deep: #02257c;
+  --color-deep-hover: #041b5f;
+  --color-navy: #00153b;
+  --color-surface: #f7f8fb;
+  --color-line: #eceff6;
+  --color-line-strong: #dfe4ef;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body {
+    background: #fff;
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 32px;
+  }
+  ::selection {
+    background: #d7e0fb;
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+}
+
+@utility shell {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  @media (min-width: 640px) {
+    padding-inline: 32px;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 48px;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 64px;
+  }
+}
+
+/* ---- type ---- */
+@utility t-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.032em;
+  color: var(--color-ink);
+}
+@utility t-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 40px;
+  letter-spacing: -0.022em;
+  color: var(--color-ink);
+}
+@utility t-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@utility t-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.028em;
+  color: var(--color-ink);
+}
+@utility t-body-sm {
+  /* the design sets 13.5px at 1440; bumped a little on small screens for legibility */
+  font-size: 15px;
+  line-height: 27px;
+  @media (min-width: 1024px) {
+    font-size: 13.5px;
+    line-height: 26px;
+  }
+}
+
+/* ---- link with arrow ---- */
+@utility arrow-slide {
+  & svg {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover svg {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* long-form legal copy */
+.legal-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.018em;
+  color: var(--color-ink);
+  margin-top: 38px;
+}
+.legal-prose h2:first-child {
+  margin-top: 0;
+}
+.legal-prose p,
+.legal-prose li {
+  font-size: 16px;
+  line-height: 29px;
+  color: var(--color-body);
+}
+.legal-prose p {
+  margin-top: 14px;
+}
+.legal-prose ul {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.legal-prose li {
+  padding-left: 20px;
+  position: relative;
+}
+.legal-prose li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 12px;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+.legal-prose a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.legal-prose a:hover {
+  text-decoration: underline;
+}
