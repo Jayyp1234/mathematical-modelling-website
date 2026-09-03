@@ -80,7 +80,11 @@ export default function AboutPage() {
                 key={s.label}
                 className={i > 0 ? "md:border-line-strong md:border-l md:pl-[42px]" : ""}
               >
-                <dd className="t-display text-[30px] leading-[36px] tracking-[-0.03em]">
+                <dd
+                  className="t-display text-[30px] leading-[36px] tracking-[-0.03em]"
+                  data-count={parseInt(s.value, 10)}
+                  data-count-suffix={s.value.replace(/^\d+/, "")}
+                >
                   {s.value}
                 </dd>
                 <dt className="mt-[1px] text-[14px] leading-[20px] text-[#66738f]">

@@ -33,9 +33,9 @@ type LogoProps = {
 
 const sizes = {
   header: {
-    mark: "w-[74px]",
-    gap: "gap-[13px]",
-    word: "text-[18px] leading-[23px] tracking-[0.145em]",
+    mark: "w-[47px]",
+    gap: "gap-[10px]",
+    word: "text-[13px] leading-[16px] tracking-[0.14em]",
   },
   footer: {
     mark: "w-[44px]",

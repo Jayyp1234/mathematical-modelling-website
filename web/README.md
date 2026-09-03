@@ -27,7 +27,7 @@ Key values, all in the 1440 frame:
 
 | Token | Value |
 | --- | --- |
-| Header height | 136 px |
+| Header height | 76 px, 66 px once scrolled (the design's 136 px was reduced for a tighter B2B bar) |
 | H1 | 68 / 73 px, `-0.032em` |
 | Section H2 | 30 / 40 px (research heading is 26 px in the design) |
 | Hero body | 17 / 32 px |
@@ -206,5 +206,16 @@ site header lockup — see `src/components/ui/logo.tsx`.
 - `siteUrl` is set to `https://mathematicalmodelling.com` — confirm the real
   domain before launch, since sitemap, canonicals and Open Graph all derive
   from it.
-- Motion is limited to hover transitions and respects
-  `prefers-reduced-motion`.
+## Motion
+
+`src/components/motion.tsx` reveals each `main > section` on scroll, staggers
+list items inside it, and counts the hero stats up from zero.
+
+The failure modes are the design constraint. Sections are visible by default in
+CSS; an inline script in `<head>` adds `.reveal-ready` before first paint (no
+flash) and **removes it again after 2.5s unless the component has claimed
+control**, with a second failsafe inside the component. If JavaScript is off,
+throttled in a background tab, or hydration fails, the page ends up fully
+visible. `prefers-reduced-motion` disables the whole layer.
+
+- Hover transitions elsewhere respect `prefers-reduced-motion` too.

@@ -30,33 +30,39 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white/85 backdrop-blur-md transition-shadow duration-300 ${
-        scrolled ? "shadow-[0_1px_0_0_var(--color-line)]" : ""
+      className={`sticky top-0 z-50 bg-white/90 backdrop-blur-md transition-shadow duration-300 ${
+        scrolled
+          ? "shadow-[0_1px_0_0_var(--color-line),0_10px_28px_-24px_rgba(7,22,52,0.5)]"
+          : "shadow-[0_1px_0_0_var(--color-line)]"
       }`}
     >
-      <div className="shell flex h-[88px] items-center justify-between lg:h-[136px]">
+      <div
+        className={`shell flex items-center justify-between transition-[height] duration-300 ${
+          scrolled ? "h-[62px] lg:h-[66px]" : "h-[68px] lg:h-[76px]"
+        }`}
+      >
         <Link href="/" aria-label="Mathematical Modelling — home" className="text-ink">
           <Logo size="header" priority />
         </Link>
 
         {/* desktop nav */}
-        <nav className="ml-auto mr-[42px] hidden items-center gap-[40px] lg:flex" aria-label="Main">
+        <nav className="ml-auto mr-[30px] hidden items-center gap-[30px] lg:flex" aria-label="Main">
           {nav.map((item) =>
             "children" in item ? (
               <div key={item.label} className="group relative">
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`flex items-center gap-[6px] text-[15px] font-medium transition-colors ${
+                  className={`flex items-center gap-[6px] text-[14.5px] font-medium transition-colors ${
                     isActive(item.href)
-                      ? "text-accent relative after:absolute after:-bottom-[9px] after:left-0 after:h-[2px] after:w-[calc(100%-20px)] after:rounded-full after:bg-current after:content-['']"
+                      ? "text-accent relative after:absolute after:-bottom-[7px] after:left-0 after:h-[2px] after:w-[calc(100%-20px)] after:rounded-full after:bg-current after:content-['']"
                       : "text-ink-soft hover:text-accent"
                   }`}
                 >
                   {item.label}
                   <ChevronDown className="mt-[1px] transition-transform duration-200 group-hover:rotate-180" />
                 </Link>
-                <div className="invisible absolute top-full left-1/2 z-10 w-[200px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div className="invisible absolute top-full left-1/2 z-10 w-[200px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   <ul className="border-line rounded-lg border bg-white p-2 shadow-[0_18px_40px_-16px_rgba(7,22,52,0.22)]">
                     {item.children.map((child) => (
                       <li key={child.label}>
@@ -78,8 +84,8 @@ export function SiteHeader() {
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={
                   isActive(item.href)
-                    ? "text-accent relative text-[15px] font-medium after:absolute after:-bottom-[9px] after:left-0 after:h-[2px] after:w-full after:rounded-full after:bg-current after:content-['']"
-                    : "text-ink-soft hover:text-accent text-[15px] font-medium transition-colors"
+                    ? "text-accent relative text-[14.5px] font-medium after:absolute after:-bottom-[7px] after:left-0 after:h-[2px] after:w-full after:rounded-full after:bg-current after:content-['']"
+                    : "text-ink-soft hover:text-accent text-[14.5px] font-medium transition-colors"
                 }
               >
                 {item.label}
@@ -91,7 +97,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="bg-deep hover:bg-deep-hover arrow-slide hidden h-[56px] items-center gap-[10px] rounded-[6px] px-[22px] text-[15px] font-semibold text-white transition-colors sm:inline-flex"
+            className="bg-deep hover:bg-deep-hover arrow-slide hidden h-[42px] items-center gap-[9px] rounded-[6px] px-[18px] text-[14px] font-semibold text-white transition-colors sm:inline-flex"
           >
             Get in Touch
             <ArrowRight />
@@ -103,7 +109,7 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="border-line text-ink flex h-11 w-11 items-center justify-center rounded-md border lg:hidden"
+            className="border-line text-ink flex h-[38px] w-[38px] items-center justify-center rounded-md border lg:hidden"
           >
             <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round">
               {open ? <path d="m6 6 12 12M18 6 6 18" /> : <path d="M3.5 7.5h17M3.5 16.5h17M3.5 12h17" />}

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import { org, siteUrl } from "@/lib/content";
 import { graph, jsonLd, organizationLd, websiteLd } from "@/lib/seo";
+import { Motion } from "@/components/motion";
 import "./globals.css";
 
 const inter = Inter({
@@ -94,6 +95,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${interTight.variable}`}>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('reveal-ready');setTimeout(function(){if(!d.dataset.revealActive)d.classList.remove('reveal-ready')},2500)}catch(e){}})()",
+          }}
+        />
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
         <script
@@ -103,7 +110,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Motion />
+        {children}
+      </body>
     </html>
   );
 }
