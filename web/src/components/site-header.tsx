@@ -29,6 +29,7 @@ export function SiteHeader() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`sticky top-0 z-50 bg-white/90 backdrop-blur-md transition-shadow duration-300 ${
         scrolled
@@ -109,7 +110,7 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="border-line text-ink flex h-[38px] w-[38px] items-center justify-center rounded-md border lg:hidden"
+            className="border-line text-ink -mr-1 flex h-[44px] w-[44px] items-center justify-center rounded-md border lg:hidden"
           >
             <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round">
               {open ? <path d="m6 6 12 12M18 6 6 18" /> : <path d="M3.5 7.5h17M3.5 16.5h17M3.5 12h17" />}
@@ -117,35 +118,39 @@ export function SiteHeader() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* mobile nav */}
+      {/* mobile nav — sibling of <header> so the header backdrop-filter does not
+          become the containing block for this fixed overlay */}
       <div
         id="mobile-nav"
         hidden={!open}
-        className="border-line border-t bg-white lg:hidden"
+        className={`border-line fixed inset-x-0 bottom-0 z-40 overflow-y-auto overscroll-contain border-t bg-white lg:hidden ${
+          scrolled ? "top-[62px]" : "top-[68px]"
+        }`}
       >
-        <nav className="shell flex flex-col py-4" aria-label="Mobile">
+        <nav className="shell flex min-h-full flex-col py-5" aria-label="Mobile">
           {nav.map((item) => (
             <div key={item.label}>
               <Link
                 href={item.href}
                 onClick={() => setOpen(false)}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={`block py-3 text-[17px] font-medium ${
+                className={`border-line/70 block border-b py-[15px] text-[18px] font-medium ${
                   isActive(item.href) ? "text-accent" : "text-ink"
                 }`}
               >
                 {item.label}
               </Link>
               {"children" in item && (
-                <div className="border-line mb-2 ml-3 flex flex-col border-l pl-4">
+                <div className="border-line/70 ml-3 flex flex-col border-l border-b pl-4 py-1">
                   {item.children.map((c) => (
                     <Link
                       key={c.label}
                       href={c.href}
                       onClick={() => setOpen(false)}
                       aria-current={pathname === c.href ? "page" : undefined}
-                      className={`py-2 text-[15px] ${
+                      className={`py-[11px] text-[15px] ${
                         pathname === c.href ? "text-accent" : "text-body"
                       }`}
                     >
@@ -159,13 +164,13 @@ export function SiteHeader() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="bg-deep mt-3 mb-2 inline-flex h-[52px] items-center justify-center gap-[10px] rounded-[6px] text-[15px] font-semibold text-white sm:hidden"
+            className="bg-deep hover:bg-deep-hover mt-auto mb-[8px] flex h-[54px] w-full items-center justify-center gap-[10px] rounded-[6px] pt-0 text-[16px] font-semibold text-white transition-colors"
           >
             Get in Touch
             <ArrowRight />
           </Link>
         </nav>
       </div>
-    </header>
+    </>
   );
 }

@@ -23,6 +23,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    /* stop mobile browsers inflating text in landscape */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   body {
     background: #fff;
@@ -30,6 +33,15 @@
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 32px;
+    /* belt-and-suspenders against any accidental horizontal scroll on mobile */
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* keep media fluid inside any container */
+  img,
+  svg,
+  video {
+    max-width: 100%;
   }
   ::selection {
     background: #d7e0fb;

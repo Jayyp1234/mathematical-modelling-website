@@ -4,7 +4,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
-import { LogoStrip } from "@/components/logo-strip";
 import { ArrowRight, IconDoc, IconYouTube } from "@/components/ui/icons";
 import {
   howWeWork,
@@ -191,11 +190,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <LogoStrip />
-
-        <div className="pt-[52px]">
-          <CtaBand />
-        </div>
+        <CtaBand />
       </main>
 
       <SiteFooter />

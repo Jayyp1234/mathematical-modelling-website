@@ -8,7 +8,7 @@ type Errors = Partial<Record<"name" | "email" | "company" | "topic" | "message",
 type State = "idle" | "sending" | "sent";
 
 const field =
-  "border-line focus:border-accent w-full rounded-[6px] border bg-white px-[15px] py-[13px] text-[15px] leading-[22px] text-ink transition-colors outline-none placeholder:text-[#9aa4bd]";
+  "border-line focus:border-accent w-full rounded-[6px] border bg-white px-[15px] py-[13px] text-[16px] leading-[22px] text-ink transition-colors outline-none placeholder:text-[#9aa4bd]";
 
 export function ContactForm() {
   const uid = useId();

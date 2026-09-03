@@ -34,7 +34,7 @@ export function SiteFooter() {
                   <Link
                     href={href}
                     aria-label={label}
-                    className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:border-white/60 hover:bg-white/10 hover:text-white"
+                    className="flex h-[40px] w-[40px] items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:border-white/60 hover:bg-white/10 hover:text-white"
                   >
                     <Icon />
                   </Link>

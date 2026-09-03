@@ -1,6 +1,5 @@
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
-import { LogoStrip } from "@/components/logo-strip";
 import { Services } from "@/components/services";
 import { CaseStudies } from "@/components/case-studies";
 import { Learn } from "@/components/learn";
@@ -34,7 +33,6 @@ export default function Home() {
       <SiteHeader />
       <main id="main">
         <Hero />
-        <LogoStrip />
         <Services />
         <CaseStudies />
         <Learn />

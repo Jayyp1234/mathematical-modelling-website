@@ -37,15 +37,6 @@ export const stats = [
   { value: "12+", label: "Industries Served", icon: "globe" },
 ] as const;
 
-export const clients = [
-  { name: "TotalEnergies", className: "font-semibold tracking-[-0.01em]" },
-  { name: "Schlumberger", className: "font-black italic tracking-[-0.03em]" },
-  { name: "ExxonMobil", className: "font-semibold tracking-[-0.02em]" },
-  { name: "Shell", className: "font-bold tracking-[0.02em]" },
-  { name: "WOOD", className: "font-light tracking-[0.22em]" },
-  { name: "Baker Hughes", className: "font-bold tracking-[-0.02em]" },
-  { name: "Seplat Energy", className: "font-medium tracking-[-0.01em]" },
-] as const;
 
 export type Service = {
   icon: "analytics" | "model" | "forecast" | "decision";
