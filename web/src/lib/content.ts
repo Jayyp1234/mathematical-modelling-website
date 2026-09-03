@@ -172,6 +172,8 @@ export const videos: Video[] = [
   { id: "Bw7NtcJy5mU", title: "Missing square puzzle", duration: "0:11", views: 21, publishedAt: "2023-06-18" },
   { id: "8lJkAog3ft8", title: "Mathematically Equal but Computationally Not", duration: "4:42", views: 37, publishedAt: "2023-04-29", thumb: "mq" },
   { id: "eOCOy9AFv9w", title: "Robot Control Using Gradient Descent Algorithm", duration: "7:02", views: 308, publishedAt: "2023-04-22" },
+  { id: "LMorCjPFlZk", title: "Six-Link Mechanical System Steady State Simulation", duration: "0:33", views: 56, publishedAt: "2022-08-20", zoom: 1.1 },
+  { id: "PCkUbRU802U", title: "Pen Plotter at work. Matlab Graphics", duration: "5:04", views: 59, publishedAt: "2022-08-09" },
 ];
 
 const viewFormat = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
