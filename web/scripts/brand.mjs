@@ -96,7 +96,24 @@ fs.writeFileSync(pub("brand/icon-512.png"), await appIcon(512, 0.22));
 // maskable: full bleed, art kept inside the 80% safe zone the platform may crop to
 fs.writeFileSync(pub("brand/icon-maskable-512.png"), await appIcon(512, 0));
 
-/* ---- 4. social sharing card ---- */
+/* ---- 4. social profile avatars (LinkedIn, X, GitHub org: 300x300) ---- */
+// full-bleed navy tile — reads at the 48px these platforms actually render
+fs.writeFileSync(pub("brand/social-avatar.png"), await appIcon(300, 0));
+// light alternative, full lockup on white
+{
+  const pad = 26;
+  const art = await sharp(await sharp(LOGO).trim({ threshold: 1 }).png().toBuffer())
+    .resize({ width: 300 - pad * 2, height: 300 - pad * 2, fit: "contain", background: "#ffffff" })
+    .png()
+    .toBuffer();
+  const m = await sharp(art).metadata();
+  await sharp({ create: { width: 300, height: 300, channels: 3, background: "#ffffff" } })
+    .composite([{ input: art, left: Math.round((300 - m.width) / 2), top: Math.round((300 - m.height) / 2) }])
+    .png({ compressionLevel: 9 })
+    .toFile(pub("brand/social-avatar-light.png"));
+}
+
+/* ---- 5. social sharing card ---- */
 const OG_W = 1200, OG_H = 630;
 const lockup = await sharp(LOGO).trim({ threshold: 1 }).png().toBuffer();
 const lockupWhite = await sharp(await recolor(lockup, "#ffffff"))
