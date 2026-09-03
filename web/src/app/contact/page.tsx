@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactForm } from "@/components/contact-form";
 import { IconMail, IconPhone, IconPin } from "@/components/ui/icons";
 import { contact, org } from "@/lib/content";
@@ -26,6 +27,11 @@ const details = [
   { Icon: IconMail, label: "Email", value: contact.email, href: `mailto:${contact.email}` },
 ];
 
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "Contact Us", path: "/contact" },
+] as const;
+
 export default function ContactPage() {
   return (
     <>
@@ -35,10 +41,7 @@ export default function ContactPage() {
           __html: jsonLd(
             graph(
               contactLd,
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "Contact Us", path: "/contact" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -52,7 +55,8 @@ export default function ContactPage() {
       <SiteHeader />
 
       <main id="main">
-        <section className="shell pt-[48px] pb-[40px]">
+        <Breadcrumbs trail={trail} />
+        <section className="shell pt-[18px] pb-[40px]">
           <p className="t-eyebrow text-accent">Contact us</p>
           <h1 className="t-display mt-[18px] max-w-[760px] text-[34px] leading-[1.12] sm:text-[42px]">
             Tell us what you&rsquo;re trying to decide.

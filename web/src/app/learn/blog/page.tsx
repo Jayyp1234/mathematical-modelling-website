@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
 import { FeaturedPost, PostCard } from "@/components/post-card";
 import { IconDoc } from "@/components/ui/icons";
@@ -24,6 +25,12 @@ export const metadata: Metadata = {
 
 const [featured, ...rest] = posts;
 
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "Learn", path: "/learn" },
+  { name: "Blog", path: "/learn/blog" },
+] as const;
+
 export default function BlogPage() {
   return (
     <>
@@ -33,11 +40,7 @@ export default function BlogPage() {
           __html: jsonLd(
             graph(
               blogLd,
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "Learn", path: "/learn/blog" },
-                { name: "Blog", path: "/learn/blog" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -51,7 +54,8 @@ export default function BlogPage() {
       <SiteHeader />
 
       <main id="main">
-        <section className="shell pt-[48px] pb-[38px]">
+        <Breadcrumbs trail={trail} />
+        <section className="shell pt-[18px] pb-[38px]">
           <p className="flex items-center gap-[12px]">
             <span className="text-accent">
               <IconDoc />

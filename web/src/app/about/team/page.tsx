@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
 import { ArrowRight, IconDoc, IconYouTube } from "@/components/ui/icons";
 import { org, papers, team, videos } from "@/lib/content";
@@ -23,6 +24,12 @@ export const metadata: Metadata = {
 
 const years = [...new Set(papers.map((p) => p.year))];
 
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
+  { name: "Our Team", path: "/about/team" },
+] as const;
+
 export default function TeamPage() {
   return (
     <>
@@ -31,11 +38,7 @@ export default function TeamPage() {
         dangerouslySetInnerHTML={{
           __html: jsonLd(
             graph(
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "About Us", path: "/about" },
-                { name: "Our Team", path: "/about/team" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -49,7 +52,8 @@ export default function TeamPage() {
       <SiteHeader />
 
       <main id="main">
-        <section className="shell pt-[48px] pb-[40px]">
+        <Breadcrumbs trail={trail} />
+        <section className="shell pt-[18px] pb-[40px]">
           <p className="t-eyebrow text-accent">Our team</p>
           <h1 className="t-display mt-[18px] max-w-[760px] text-[34px] leading-[1.12] sm:text-[42px]">
             Small practice. Published work.

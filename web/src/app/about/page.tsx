@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
 import { LogoStrip } from "@/components/logo-strip";
 import { ArrowRight, IconDoc, IconYouTube } from "@/components/ui/icons";
 import {
-  footerNav,
   howWeWork,
   org,
   papers,
@@ -19,21 +19,25 @@ import { aboutLd, breadcrumbLd, graph, jsonLd, servicesLd } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "We build mathematical models that turn complex data into clear insights. How we work, the industries we serve, and the published research behind the models.",
+    "We build mathematical models that turn complex data into clear insights. How we work, and the published research behind the models.",
   alternates: { canonical: "/about" },
   openGraph: {
     type: "website",
     url: "/about",
     title: `About Us | ${org.name}`,
     description:
-      "How we work, the industries we serve, and the published research behind the models.",
+      "How we work, and the published research behind the models.",
     images: ["/brand/og.png"],
   },
 };
 
-const industries = footerNav.find((c) => c.heading === "Industries")!.links;
 const years = [...new Set(papers.map((p) => p.year))];
 const sources = new Set(papers.map((p) => p.source)).size;
+
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
+] as const;
 
 export default function AboutPage() {
   return (
@@ -45,10 +49,7 @@ export default function AboutPage() {
             graph(
               aboutLd,
               servicesLd(services),
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "About Us", path: "/about" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -62,8 +63,9 @@ export default function AboutPage() {
       <SiteHeader />
 
       <main id="main">
+        <Breadcrumbs trail={trail} />
         {/* ---------- intro ---------- */}
-        <section className="shell pt-[48px] pb-[40px]">
+        <section className="shell pt-[18px] pb-[40px]">
           <p className="t-eyebrow text-accent">About us</p>
           <h1 className="t-display mt-[18px] max-w-[820px] text-[34px] leading-[1.12] sm:text-[42px]">
             Models you can interrogate, not just believe.
@@ -137,28 +139,6 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </section>
-
-        {/* ---------- industries ---------- */}
-        <section className="shell pb-[52px]" aria-labelledby="industries">
-          <div className="grid gap-y-8 lg:grid-cols-[315px_1fr] lg:gap-x-[34px]">
-            <div>
-              <p className="t-eyebrow text-accent">Industries</p>
-              <h2 id="industries" className="t-h2 mt-[16px]">
-                Where the models run.
-              </h2>
-            </div>
-            <ul className="flex flex-wrap content-start gap-[12px]">
-              {industries.map((i) => (
-                <li
-                  key={i.label}
-                  className="border-line text-ink rounded-full border bg-white px-[20px] py-[11px] text-[15px] font-medium"
-                >
-                  {i.label}
-                </li>
-              ))}
-            </ul>
-          </div>
         </section>
 
         {/* ---------- evidence ---------- */}

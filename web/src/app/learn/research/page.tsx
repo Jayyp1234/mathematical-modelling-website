@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
 import { PaperRow } from "@/components/paper-row";
 import { org, papers } from "@/lib/content";
@@ -9,7 +10,7 @@ import { breadcrumbLd, graph, jsonLd, papersLd } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Research Work",
   description:
-    "Peer-reviewed and conference research on natural gas properties, reservoir and well productivity, and numerical methods — published with Springer, Elsevier, SAGE, SPE and the AMS.",
+    "Peer-reviewed research on natural gas properties, reservoir productivity and numerical methods — published with Springer, Elsevier, SAGE and the SPE.",
   alternates: { canonical: "/learn/research" },
   openGraph: {
     type: "website",
@@ -24,6 +25,12 @@ export const metadata: Metadata = {
 const years = [...new Set(papers.map((p) => p.year))];
 const span = `${years[years.length - 1]}–${years[0]}`;
 
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "Learn", path: "/learn" },
+  { name: "Research Work", path: "/learn/research" },
+] as const;
+
 export default function ResearchPage() {
   return (
     <>
@@ -33,11 +40,7 @@ export default function ResearchPage() {
           __html: jsonLd(
             graph(
               papersLd(papers),
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "Learn", path: "/learn/research" },
-                { name: "Research Work", path: "/learn/research" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -51,7 +54,8 @@ export default function ResearchPage() {
       <SiteHeader />
 
       <main id="main">
-        <section className="shell pt-[48px] pb-[38px]">
+        <Breadcrumbs trail={trail} />
+        <section className="shell pt-[18px] pb-[38px]">
           <p className="t-eyebrow text-accent">Research work</p>
           <h1 className="t-display mt-[18px] max-w-[720px] text-[34px] leading-[1.14] sm:text-[40px]">
             Advancing knowledge. Solving real problems.

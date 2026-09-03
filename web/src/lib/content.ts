@@ -17,7 +17,6 @@ export const org = {
 export const nav = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Industries", href: "/industries" },
   { label: "Case Studies", href: "/case-studies" },
   {
     label: "Learn",
@@ -348,17 +347,6 @@ export const footerNav = [
       { label: "Mathematical Modelling", href: "/services#mathematical-modelling" },
       { label: "Simulation & Forecasting", href: "/services#simulation-forecasting" },
       { label: "Decision Support", href: "/services#decision-support" },
-    ],
-  },
-  {
-    heading: "Industries",
-    links: [
-      { label: "Energy", href: "/industries/energy" },
-      { label: "Renewables", href: "/industries/renewables" },
-      { label: "Oil & Gas", href: "/industries/oil-and-gas" },
-      { label: "Manufacturing", href: "/industries/manufacturing" },
-      { label: "Finance", href: "/industries/finance" },
-      { label: "Public Sector", href: "/industries/public-sector" },
     ],
   },
   {

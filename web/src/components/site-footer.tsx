@@ -19,7 +19,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-navy text-white/70">
       <div className="shell pt-[60px] pb-[14px]">
-        <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-[2.46fr_1.77fr_1.59fr_1.43fr_1.58fr_2.69fr]">
+        <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-[2.4fr_1.9fr_1.5fr_1.6fr_2.6fr]">
           <div className="max-w-[246px]">
             <Link href="/" aria-label="Mathematical Modelling — home" className="text-white">
               <Logo size="footer" tone="white" />

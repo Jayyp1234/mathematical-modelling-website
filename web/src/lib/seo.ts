@@ -169,7 +169,7 @@ export const contactLd = {
   inLanguage: "en",
 };
 
-export const breadcrumbLd = (trail: { name: string; path: string }[]) => ({
+export const breadcrumbLd = (trail: readonly { name: string; path: string }[]) => ({
   "@type": "BreadcrumbList",
   itemListElement: trail.map((t, i) => ({
     "@type": "ListItem",

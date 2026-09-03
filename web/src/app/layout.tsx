@@ -65,7 +65,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${org.name} — ${org.tagline}`,
     description: org.description,
-    images: ["/brand/og.png"],
+    images: [
+      {
+        url: "/brand/og.png",
+        alt: `${org.name} — ${org.tagline}`,
+      },
+    ],
   },
   robots: {
     index: true,

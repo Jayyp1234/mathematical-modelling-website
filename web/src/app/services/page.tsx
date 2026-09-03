@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
 import {
   ArrowRight,
@@ -10,7 +11,7 @@ import {
   IconForecast,
   IconModel,
 } from "@/components/ui/icons";
-import { footerNav, org, services } from "@/lib/content";
+import { org, services } from "@/lib/content";
 import { breadcrumbLd, graph, jsonLd, servicesLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -35,7 +36,10 @@ const icons = {
   decision: IconDecision,
 } as const;
 
-const industries = footerNav.find((c) => c.heading === "Industries")!.links;
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services" },
+] as const;
 
 export default function ServicesPage() {
   return (
@@ -46,10 +50,7 @@ export default function ServicesPage() {
           __html: jsonLd(
             graph(
               servicesLd(services),
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "Services", path: "/services" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -63,7 +64,8 @@ export default function ServicesPage() {
       <SiteHeader />
 
       <main id="main">
-        <section className="shell pt-[48px] pb-[40px]">
+        <Breadcrumbs trail={trail} />
+        <section className="shell pt-[18px] pb-[40px]">
           <p className="t-eyebrow text-accent">Services</p>
           <h1 className="t-display mt-[18px] max-w-[820px] text-[34px] leading-[1.12] sm:text-[42px]">
             Turning complexity into clarity.
@@ -146,27 +148,6 @@ export default function ServicesPage() {
             </section>
           );
         })}
-
-        <section className="shell pt-[18px] pb-[52px]" aria-labelledby="sectors">
-          <div className="grid gap-y-8 lg:grid-cols-[315px_1fr] lg:gap-x-[34px]">
-            <div>
-              <p className="t-eyebrow text-accent">Industries</p>
-              <h2 id="sectors" className="t-h2 mt-[16px]">
-                Where we apply them.
-              </h2>
-            </div>
-            <ul className="flex flex-wrap content-start gap-[12px]">
-              {industries.map((i) => (
-                <li
-                  key={i.label}
-                  className="border-line text-ink rounded-full border bg-white px-[20px] py-[11px] text-[15px] font-medium"
-                >
-                  {i.label}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
 
         <CtaBand />
       </main>

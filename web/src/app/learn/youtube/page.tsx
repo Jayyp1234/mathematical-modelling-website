@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
 import { FeaturedVideo, VideoCard } from "@/components/video-card";
 import { ArrowRight, IconYouTube } from "@/components/ui/icons";
@@ -25,6 +26,12 @@ export const metadata: Metadata = {
 
 const [featured, ...rest] = videos;
 
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "Learn", path: "/learn" },
+  { name: "YouTube", path: "/learn/youtube" },
+] as const;
+
 export default function YouTubePage() {
   return (
     <>
@@ -34,11 +41,7 @@ export default function YouTubePage() {
           __html: jsonLd(
             graph(
               videoListLd(videos),
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "Learn", path: "/learn/youtube" },
-                { name: "YouTube", path: "/learn/youtube" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -52,7 +55,8 @@ export default function YouTubePage() {
       <SiteHeader />
 
       <main id="main">
-        <section className="shell pt-[48px] pb-[38px]">
+        <Breadcrumbs trail={trail} />
+        <section className="shell pt-[18px] pb-[38px]">
           <p className="flex items-center gap-[12px]">
             <IconYouTube />
             <span className="t-eyebrow text-accent">YouTube</span>

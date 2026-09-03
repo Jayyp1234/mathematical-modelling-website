@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBand } from "@/components/cta-band";
 import { ArrowRight } from "@/components/ui/icons";
 import { contact, openRoles, org } from "@/lib/content";
@@ -27,6 +28,11 @@ const looksLike = [
   "You would rather say “this model does not hold here” than defend it.",
 ];
 
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "Careers", path: "/careers" },
+] as const;
+
 export default function CareersPage() {
   return (
     <>
@@ -35,10 +41,7 @@ export default function CareersPage() {
         dangerouslySetInnerHTML={{
           __html: jsonLd(
             graph(
-              breadcrumbLd([
-                { name: "Home", path: "/" },
-                { name: "Careers", path: "/careers" },
-              ]),
+              breadcrumbLd(trail),
             ),
           ),
         }}
@@ -52,7 +55,8 @@ export default function CareersPage() {
       <SiteHeader />
 
       <main id="main">
-        <section className="shell pt-[48px] pb-[40px]">
+        <Breadcrumbs trail={trail} />
+        <section className="shell pt-[18px] pb-[40px]">
           <p className="t-eyebrow text-accent">Careers</p>
           <h1 className="t-display mt-[18px] max-w-[760px] text-[34px] leading-[1.12] sm:text-[42px]">
             Work on problems that have a right answer.
