@@ -7,10 +7,10 @@ import {
   IconPin,
   IconYouTubeGlyph,
 } from "./ui/icons";
-import { contact, footerNav, youtubeChannelUrl } from "@/lib/content";
+import { contact, footerNav, linkedinUrl, youtubeChannelUrl } from "@/lib/content";
 
 const socials = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/", Icon: IconLinkedIn },
+  { label: "LinkedIn", href: linkedinUrl, Icon: IconLinkedIn },
   { label: "YouTube", href: youtubeChannelUrl, Icon: IconYouTubeGlyph },
   { label: "Email", href: `mailto:${contact.email}`, Icon: IconMail },
 ];

@@ -8,7 +8,10 @@ export const org = {
   description:
     "We build mathematical models that turn complex data into clear insights—empowering better decisions and real-world impact.",
   areaServed: "Worldwide",
-  sameAs: ["https://www.youtube.com/@lateefkareem"],
+  sameAs: [
+    "https://www.youtube.com/@lateefkareem",
+    "https://www.linkedin.com/company/mathematical-modelling/",
+  ],
 } as const;
 
 export const nav = [
@@ -144,6 +147,9 @@ export const caseStudies = [
 
 /** Channel-wide link used by the "Visit Our YouTube Channel" call to action. */
 export const youtubeChannelUrl = "https://www.youtube.com/@lateefkareem";
+
+/** Company page, used by the footer and by the Organization structured data. */
+export const linkedinUrl = "https://www.linkedin.com/company/mathematical-modelling/";
 
 export type Video = {
   id: string;
